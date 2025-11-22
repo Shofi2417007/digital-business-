@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReWear – Circular Fashion Marketplace</title>
+  <meta name="description" content="ReWear is a circular fashion marketplace where you can sell, swap, and rewear clothes sustainably." />
+
+  <style>
+    :root {
+      --bg: #f5f7f4;
+      --bg-alt: #ffffff;
+      --primary: #1f8a70;      /* green */
+      --primary-soft: #e0f4ec;
+      --accent: #f5a623;       /* warm accent */
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border-soft: #e5e7eb;
+      --radius-xl: 1.5rem;
+      --shadow-soft: 0 20px 40px rgba(15, 23, 42, 0.08);
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #e0f4ec, #f5f7f4 40%, #ffffff 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem;
+    }
+
+    /* NAVBAR */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(245, 247, 244, 0.8);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.6);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: conic-gradient(from 120deg, #1f8a70, #f5a623, #1f8a70);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f9fafb;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 10px 25px rgba(31, 138, 112, 0.35);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .brand-text span:first-child {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
+
+    .brand-text span:last-child {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.1rem;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.15rem;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.55rem 1.25rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #f9fafb;
+      box-shadow: 0 15px 30px rgba(31, 138, 112, 0.45);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 40px rgba(31, 138, 112, 0.5);
+    }
+
+    .btn-ghost {
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(255, 255, 255, 0.75);
+      color: var(--text-main);
+    }
+
+    .btn-ghost:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+    }
+
+    /* HERO */
+    main {
+      flex: 1;
+    }
+
+    .hero {
+      padding-top: 2.5rem;
+      padding-bottom: 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(224, 244, 236, 0.9);
+      color: var(--primary);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--primary);
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 4vw, 2.7rem);
+      margin-top: 0.75rem;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-title span.highlight {
+      background: linear-gradient(120deg, #1f8a70, #f5a623);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+      max-width: 32rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-links {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .hero-links span {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: #9ca3af;
+    }
+
+    .hero-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .metric {
+      min-width: 110px;
+    }
+
+    .metric strong {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .metric small {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* HERO MOCKUP */
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-xl);
+      padding: 1.3rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .hero-card-title {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .hero-card-title strong {
+      font-size: 0.9rem;
+    }
+
+    .hero-card-title span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .hero-chip {
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      font-size: 0.7rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .listing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+    }
+
+    .listing-card {
+      border-radius: 0.9rem;
+      border: 1px solid var(--border-soft);
+      padding: 0.5rem;
+      background: linear-gradient(135deg, #ffffff, #f9fafb);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+    }
+
+    .listing-thumb {
+      border-radius: 0.75rem;
+      height: 80px;
+      background: linear-gradient(135deg, #f3e7ff, #e0f4ec);
+      margin-bottom: 0.3rem;
+    }
+
+    .listing-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.3rem;
+    }
+
+    .price {
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .pill {
+      font-size: 0.65rem;
+      border-radius: 999px;
+      padding: 0.1rem 0.5rem;
+      background: #f3f4f6;
+      color: #4b5563;
+    }
+
+    .hero-swap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      margin-top: 0.4rem;
+    }
+
+    .swap-users {
+      display: flex;
+      align-items: center;
+    }
+
+    .swap-users span {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 2px solid #fff;
+      background: #d1fae5;
+      margin-left: -6px;
+      box-shadow: 0 0 0 1px rgba(209, 213, 219, 0.4);
+    }
+
+    .swap-users span:first-child {
+      margin-left: 0;
+    }
+
+    .swap-label {
+      color: var(--text-muted);
+    }
+
+    .floating-tag {
+      position: absolute;
+      left: -5px;
+      bottom: -10px;
+      background: #111827;
+      color: #f9fafb;
+      font-size: 0.7rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: 0 1.2rem 0 0;
+      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.45);
+    }
+
+    .floating-tag strong {
+      display: block;
+      font-size: 0.9rem;
+    }
+
+    /* HOW IT WORKS */
+    section {
+      padding: 2.5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 30rem;
+      margin: 0 auto 1.75rem;
+    }
+
+    .section-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.72rem;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .step-card {
+      background: var(--bg-alt);
+      border-radius: 1.25rem;
+      padding: 1.15rem;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 16px 35px rgba(15, 23, 42, 0.03);
+    }
+
+    .step-number {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .step-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .step-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* FEATURES */
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .feature-item {
+      background: #f9fafb;
+      border-radius: 1rem;
+      padding: 0.9rem;
+      border: 1px dashed #d1d5db;
+      font-size: 0.84rem;
+    }
+
+    .feature-item strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+    }
+
+    .feature-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.7rem;
+      background: #111827;
+      color: #f9fafb;
+      padding: 0.3rem 0.6rem;
+      border-radius: 999px;
+      margin-bottom: 0.6rem;
+    }
+
+    .feature-tag span {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .impact-card {
+      border-radius: 1.5rem;
+      background: linear-gradient(135deg, #1f8a70, #0f766e);
+      color: #ecfdf5;
+      padding: 1.25rem;
+      box-shadow: 0 20px 40px rgba(15, 118, 110, 0.5);
+      font-size: 0.85rem;
+    }
+
+    .impact-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-top: 0.8rem;
+    }
+
+    .impact-metrics div {
+      min-width: 100px;
+    }
+
+    .impact-metrics strong {
+      display: block;
+      font-size: 1.1rem;
+    }
+
+    .impact-metrics span {
+      font-size: 0.7rem;
+      opacity: 0.8;
+    }
+
+    /* CTA */
+    .cta {
+      padding: 2.8rem 0 3.2rem;
+    }
+
+    .cta-card {
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 1.75rem;
+      padding: 1.9rem 1.7rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 1.6rem;
+      align-items: center;
+      box-shadow: 0 25px 60px rgba(15, 23, 42, 0.75);
+    }
+
+    .cta-card h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .cta-card p {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      margin-bottom: 1rem;
+    }
+
+    .cta-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .store-badge {
+      border-radius: 0.9rem;
+      padding: 0.35rem 0.8rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.8rem;
+      display: inline-flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .store-badge span:first-child {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.9;
+    }
+
+    .store-badge span:last-child {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .cta-mockup {
+      border-radius: 1.25rem;
+      background: radial-gradient(circle at top, #1f2937, #020617);
+      padding: 0.9rem;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+    }
+
+    .cta-screen {
+      border-radius: 1rem;
+      background: linear-gradient(145deg, #0f766e, #6ee7b7);
+      padding: 1rem;
+      color: #ecfdf5;
+      font-size: 0.8rem;
+    }
+
+    .cta-screen-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.78rem;
+    }
+
+    .cta-screen-listing {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.4rem;
+    }
+
+    .cta-screen-listing div {
+      font-size: 0.75rem;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(209, 213, 219, 0.6);
+      background: rgba(248, 250, 252, 0.9);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.2rem 0;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 880px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .features-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .cta-card {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      header {
+        position: static;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+      }
+
+      .nav-links {
+        display: none; /* simple mobile version */
+      }
+
+      .steps-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .feature-list {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding-top: 1.2rem;
+      }
+
+      .cta-card {
+        padding: 1.4rem 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- NAVBAR -->
+    <header>
+      <div class="container nav">
+        <a href="#top" class="brand">
+          <div class="brand-logo">R</div>
+          <div class="brand-text">
+            <span>ReWear</span>
+            <span>Circular fashion marketplace</span>
+          </div>
+        </a>
+
+        <nav class="nav-links">
+          <a href="#how-it-works">How it works</a>
+          <a href="#features">Features</a>
+          <a href="#impact">Impact</a>
+        </nav>
+
+        <div class="nav-cta">
+          <button class="btn btn-ghost" onclick="document.getElementById('cta').scrollIntoView({behavior: 'smooth'})">
+            Log in
+          </button>
+          <button class="btn btn-primary" onclick="document.getElementById('cta').scrollIntoView({behavior: 'smooth'})">
+            Join the beta →
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="badge">
+              <span class="badge-dot"></span>
+              Prototype • ReWear
+            </div>
+            <h1 class="hero-title">
+              Give your clothes a
+              <span class="highlight">second life</span>, not a landfill.
+            </h1>
+            <p class="hero-subtitle">
+              ReWear is a circular fashion marketplace where students and young professionals can
+              <strong>sell</strong>, <strong>swap</strong>, and <strong>rewear</strong> items they love —
+              keeping style high and waste low.
+            </p>
+
+            <div class="hero-actions">
+              <button class="btn btn-primary" onclick="document.getElementById('cta').scrollIntoView({behavior: 'smooth'})">
+                Get early access
+              </button>
+              <button class="btn btn-ghost" onclick="document.getElementById('how-it-works').scrollIntoView({behavior: 'smooth'})">
+                Explore prototype
+              </button>
+            </div>
+
+            <div class="hero-links">
+              <span></span>
+              <span>Zero listing fees on beta</span>
+              <span></span>
+              <span>Built for campus & city wardrobes</span>
+            </div>
+
+            <div class="hero-metrics">
+              <div class="metric">
+                <strong>+120</strong>
+                <small>items upcycled in testing</small>
+              </div>
+              <div class="metric">
+                <strong>3×</strong>
+                <small>average wear per garment</small>
+              </div>
+              <div class="metric">
+                <strong>-40%</strong>
+                <small>estimated CO₂ per outfit</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero visual / mock "app" -->
+          <div class="hero-visual">
+            <div class="hero-card">
+              <div class="hero-card-header">
+                <div class="hero-card-title">
+                  <strong>Marketplace</strong>
+                  <span>Curated looks from your city</span>
+                </div>
+                <span class="hero-chip">Live prototype</span>
+              </div>
+
+              <div class="listing-grid">
+                <article class="listing-card">
+                  <div class="listing-thumb"></div>
+                  <div class="listing-row">
+                    <span>Vintage denim jacket</span>
+                    <span class="price">£18</span>
+                  </div>
+                  <div class="listing-row">
+                    <span class="pill">Size M • Unisex</span>
+                    <span class="pill">4.8★</span>
+                  </div>
+                </article>
+
+                <article class="listing-card">
+                  <div class="listing-thumb"></div>
+                  <div class="listing-row">
+                    <span>Campus hoodie swap</span>
+                    <span class="pill">Swap only</span>
+                  </div>
+                  <div class="listing-row">
+                    <span class="pill">Size L</span>
+                    <span class="pill">Eco pick 🌱</span>
+                  </div>
+                </article>
+              </div>
+
+              <div class="hero-swap">
+                <div>
+                  <strong>Swap queue</strong>
+                  <div class="swap-label">3 people want your jacket</div>
+                </div>
+                <div class="swap-users">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+
+              <div class="floating-tag">
+                <span>Impact this month</span>
+                <strong>63 kg CO₂e saved</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section id="how-it-works">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-kicker">How it works</div>
+            <h2 class="section-title">From “wardrobe regret” to rewear-ready in 3 steps</h2>
+            <p class="section-subtitle">
+              ReWear makes it easy to move unworn clothes out of your wardrobe and into someone else’s rotation.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <article class="step-card">
+              <div class="step-number">1</div>
+              <h3>List your item in seconds</h3>
+              <p>
+                Snap a photo, add size and condition, then set your preference:
+                <strong>sell</strong>, <strong>swap</strong>, or <strong>donate</strong>. We suggest a price
+                based on similar items.
+              </p>
+            </article>
+
+            <article class="step-card">
+              <div class="step-number">2</div>
+              <h3>Match with local ReWearers</h3>
+              <p>
+                Our prototype prioritises matches <strong>near you</strong>, reducing shipping emissions and
+                making in-person swaps or campus drop-offs simple.
+              </p>
+            </article>
+
+            <article class="step-card">
+              <div class="step-number">3</div>
+              <h3>Swap, ship, rewear</h3>
+              <p>
+                Complete the swap or sale, track your
+                <strong>CO₂ & landfill savings</strong>, and build your ReWear profile as a conscious fashion
+                lover.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES / IMPACT -->
+      <section id="features">
+        <div class="container features-grid">
+          <div>
+            <div class="section-header" style="text-align:left; margin-bottom:1.2rem;">
+              <div class="section-kicker">Features</div>
+              <h2 class="section-title">Designed for circular fashion, not fast fashion</h2>
+              <p class="section-subtitle">
+                ReWear focuses on transparency, quality, and community – so you can trust every item you buy or swap.
+              </p>
+            </div>
+
+            <div class="feature-list">
+              <div class="feature-item">
+                <strong>Smart listings</strong>
+                <p>
+                  Auto-suggested titles, categories, and prices based on brand, condition, and recent ReWear sales.
+                </p>
+              </div>
+              <div class="feature-item">
+                <strong>Swap-first mode</strong>
+                <p>
+                  Prefer swapping to spending? Turn on Swap Mode and match only with users who also want to swap.
+                </p>
+              </div>
+              <div class="feature-item">
+                <strong>Condition badges</strong>
+                <p>
+                  “New with tags”, “Pre-loved”, and “Upcycled” badges keep quality clear at a glance.
+                </p>
+              </div>
+              <div class="feature-item">
+                <strong>Trust & safety</strong>
+                <p>
+                  Profile ratings, verified campus emails, and built-in messaging to keep trades transparent.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div id="impact">
+            <div class="feature-tag">
+              <span></span> Sustainability dashboard
+            </div>
+            <div class="impact-card">
+              <h3>Impact tracker built-in</h3>
+              <p>
+                Every swap and sale estimates the <strong>water, carbon, and waste</strong> saved compared to
+                buying new. See your personal impact, plus what your whole community is achieving together.
+              </p>
+              <div class="impact-metrics">
+                <div>
+                  <strong>428k L</strong>
+                  <span>water saved (prototype scenario)</span>
+                </div>
+                <div>
+                  <strong>312 kg</strong>
+                  <span>textiles diverted from landfill</span>
+                </div>
+                <div>
+                  <strong>86%</strong>
+                  <span>users feel “less guilty” about shopping</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA / BETA SIGNUP -->
+      <section id="cta" class="cta">
+        <div class="container">
+          <div class="cta-card">
+            <div>
+              <h2>Help us test ReWear</h2>
+              <p>
+                This is an early prototype designed for coursework and real-world testing. Join the beta list to
+                share feedback, suggest features, and shape the future of circular fashion.
+              </p>
+
+              <form onsubmit="event.preventDefault(); alert('In a real app, this would capture emails to your beta list.');">
+                <div style="display:flex; flex-wrap:wrap; gap:0.7rem; margin-bottom:0.8rem;">
+                  <input
+                    type="email"
+                    required
+                    placeholder="Enter your email to join the beta"
+                    style="
+                      flex: 1 1 220px;
+                      min-width: 0;
+                      border-radius: 999px;
+                      border: 1px solid rgba(148,163,184,0.8);
+                      padding: 0.65rem 0.9rem;
+                      font-size: 0.85rem;
+                      background: rgba(15,23,42,0.95);
+                      color: #f9fafb;
+                    "
+                  />
+                  <button class="btn btn-primary" type="submit">Join waitlist</button>
+                </div>
+              </form>
+
+              <div class="cta-badges">
+                <div class="store-badge">
+                  <span>Coming soon on</span>
+                  <span>App Store</span>
+                </div>
+                <div class="store-badge">
+                  <span>Coming soon on</span>
+                  <span>Google Play</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="cta-mockup">
+              <div class="cta-screen">
+                <div class="cta-screen-header">
+                  <span>ReWear • Profile</span>
+                  <span>Level 3 · Eco Hero</span>
+                </div>
+                <p>You’ve rehomed 9 items and saved an estimated 63 kg CO₂e. Ready for your next swap?</p>
+                <div class="cta-screen-listing">
+                  <div>
+                    <strong>Next match</strong>
+                    <div>Striped shirt • Size S</div>
+                  </div>
+                  <div>
+                    <strong>3 min</strong>
+                    <div>to accept swap</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container footer-inner">
+        <div>© <span id="year"></span> ReWear – Circular Fashion Prototype. All rights reserved.</div>
+        <div class="footer-links">
+          <a href="#">Prototype only (no real transactions)</a>
+          <a href="#">Privacy (demo)</a>
+          <a href="#">Terms (demo)</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Simple year auto-update
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
