@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rewear – Join the Circular Fashion Movement</title>
-  <meta name="description" content="Rewear is a smart swapping platform where you can list your pre-loved fashion items, earn credits and exchange them for styles you love.">
+  <title>Rewear – Home</title>
+  <meta name="description" content="Rewear is a circular fashion platform where users can sell, swap, and find sustainable clothing.">
 
   <style>
     :root {
-      --bg: #f7f2ec;       /* page background */
+      --bg: #f7f2ec;
       --card: #ffffff;
-      --primary: #355e3b;  /* dark green (buttons, headings) */
-      --accent: #d9b08c;   /* soft beige accent */
+      --primary: #355e3b;
+      --accent: #d9b08c;
       --text-main: #3a3a3a;
       --text-muted: #77716a;
       --border: #e0d4c8;
@@ -20,11 +20,7 @@
       --max-width: 1100px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -33,21 +29,10 @@
       line-height: 1.6;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+    .page { min-height: 100vh; display: flex; flex-direction: column; }
 
     .container {
       width: 100%;
@@ -56,8 +41,7 @@
       padding: 1.25rem 1.1rem;
     }
 
-    /* ---------- NAVBAR ---------- */
-
+    /* NAVBAR */
     header {
       background: #fdf7f0;
       border-bottom: 1px solid var(--border);
@@ -68,8 +52,8 @@
 
     .nav {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       gap: 1.5rem;
     }
 
@@ -79,44 +63,8 @@
       gap: 0.75rem;
     }
 
-    .logo-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 999px;
-      border: 2px solid var(--primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .logo-mark::before {
-      /* simple hanger line */
-      content: "";
-      width: 22px;
-      height: 10px;
-      border: 2px solid var(--primary);
-      border-top: 2px solid transparent;
-      border-radius: 0 0 999px 999px;
-      position: absolute;
-      top: 11px;
-    }
-
-    .logo-mark::after {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      border: 2px solid var(--primary);
-      border-top-color: transparent;
-      border-left-color: transparent;
-      transform: rotate(40deg);
-      position: absolute;
-      top: 6px;
-    }
-
     .logo-text {
-      font-family: "Georgia", "Times New Roman", serif;
+      font-family: "Georgia", serif;
       font-size: 1.3rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
@@ -165,173 +113,107 @@
       color: #4b433d;
     }
 
-    /* ---------- HERO SECTION ---------- */
-
-    main {
-      flex: 1;
-    }
-
+    /* HERO SECTION */
     .hero {
-      padding: 2.4rem 0 2.6rem;
+      padding: 2.2rem 0 2rem;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 2.2rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
       align-items: center;
     }
 
     .hero-heading {
-      font-family: "Georgia", "Times New Roman", serif;
-      font-size: 2.3rem;
-      line-height: 1.25;
-      margin-bottom: 0.9rem;
+      font-family: "Georgia", serif;
+      font-size: 2rem;
       color: #2f2a25;
+      margin-bottom: 0.6rem;
     }
 
-    .hero-body {
+    .hero-text {
       font-size: 0.95rem;
       color: var(--text-muted);
-      max-width: 32rem;
-      margin-bottom: 1.25rem;
+      max-width: 26rem;
+      margin-bottom: 1rem;
     }
 
-    .hero-body strong {
-      font-weight: 600;
-      color: #403933;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.75rem 1.9rem;
-      border-radius: 999px;
-      border: none;
-      background: var(--primary);
-      color: #fdfbf8;
-      font-size: 0.98rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      cursor: pointer;
-      box-shadow: 0 14px 32px rgba(18, 77, 46, 0.4);
-      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 18px 40px rgba(18, 77, 46, 0.45);
-      background: #294b31;
-    }
-
-    .hero-info-row {
+    .cta-row {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1.15rem;
-      font-size: 0.8rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-muted);
+      gap: 1rem;
+      margin-top: 1rem;
     }
 
-    .hero-info-pill {
-      padding: 0.2rem 0.7rem;
+    .cta-btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
       border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      font-weight: 600;
     }
 
+    .cta-secondary {
+      border: 1px solid var(--primary);
+      background: #fff;
+      color: var(--primary);
+    }
+
+    /* HERO IMAGE */
     .hero-image-wrap {
       border-radius: 0.9rem;
       overflow: hidden;
       box-shadow: var(--shadow-soft);
-      border: 1px solid var(--border);
-      background: #eee4dc;
-      min-height: 230px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0;
     }
 
-    .hero-image-placeholder {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      padding: 1.2rem;
+    /* FEATURES */
+    .features {
+      padding: 2.7rem 0;
     }
 
-    /* ---------- WHY REWEAR SECTION ---------- */
-
-    .why-section {
-      padding-bottom: 2.8rem;
-    }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
-      gap: 2.2rem;
-      align-items: flex-start;
-    }
-
-    .why-title {
-      font-family: "Georgia", "Times New Roman", serif;
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: #2f2a25;
-    }
-
-    .why-text {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-    }
-
-    .why-cards {
+    .features-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.75rem;
+      gap: 1.3rem;
     }
 
-    .why-card {
+    .feature-card {
       background: var(--card);
-      border-radius: 0.75rem;
-      overflow: hidden;
+      border-radius: 0.8rem;
+      padding: 1.1rem;
       border: 1px solid var(--border);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
-      font-size: 0.82rem;
+      box-shadow: var(--shadow-soft);
     }
 
-    .why-card-image {
-      background: #ddd1c7;
-      height: 110px;
+    .feature-title {
+      font-family: "Georgia", serif;
+      font-size: 1.2rem;
+      color: #2f2a25;
+      margin-bottom: 0.4rem;
     }
 
-    .why-card-body {
-      padding: 0.55rem 0.7rem 0.65rem;
-      text-align: center;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: #4b433d;
+    .feature-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
     }
 
-    /* ---------- FOOTER ---------- */
-
+    /* FOOTER */
     footer {
       border-top: 1px solid var(--border);
       background: #fdf7f0;
+      margin-top: 2rem;
     }
 
     .footer-inner {
-      padding: 0.9rem 0;
+      padding: 1rem 0;
       display: flex;
       justify-content: space-between;
-      align-items: center;
       flex-wrap: wrap;
-      gap: 0.7rem;
+      gap: 0.6rem;
       font-size: 0.85rem;
       color: var(--text-muted);
     }
@@ -339,148 +221,107 @@
     .footer-links {
       display: flex;
       gap: 1.2rem;
-      font-size: 0.86rem;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
+      font-size: 0.85rem;
     }
 
-    .footer-links a {
-      color: #4b433d;
-    }
-
-    /* ---------- RESPONSIVE ---------- */
-
-    @media (max-width: 900px) {
-      .hero-grid,
-      .why-grid {
+    @media (max-width: 780px) {
+      .hero-grid {
         grid-template-columns: minmax(0, 1fr);
       }
-    }
-
-    @media (max-width: 720px) {
-      header {
-        position: static;
-      }
-
-      .nav-center {
-        display: none; /* simple mobile version */
-      }
-
-      .hero {
-        padding-top: 1.6rem;
-      }
-
-      .why-cards {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .footer-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+      .nav-center { display: none; }
     }
   </style>
 </head>
+
 <body>
-  <div class="page">
-    <!-- NAVBAR -->
-    <header>
-      <div class="container nav">
-        <div class="nav-left">
-          <div class="nav-left">
-  <img src="logo.png" alt="Rewear Logo" style="height:42px; border-radius:8px;">
-  <div class="logo-text">REWEAR</div>
-</div>
-        <nav class="nav-center">
-          <a href="index.html" class="active">Home</a>
-          <a href="dashboard.html">Dashboard</a>
-          <a href="marketplace.html">Marketplace</a>
-          <a href="sell.html">Sell</a>
-        </nav>
+<div class="page">
 
-        <div class="nav-right">
-          LOGIN / SIGN UP
+  <!-- NAVBAR with REAL LOGO -->
+  <header>
+    <div class="container nav">
+      <div class="nav-left">
+        <img src="logo.png" alt="Rewear Logo" style="height:42px; border-radius:8px;">
+        <div class="logo-text">REWEAR</div>
+      </div>
+
+      <nav class="nav-center">
+        <a href="index.html" class="active">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="marketplace.html">Marketplace</a>
+        <a href="sell.html">Sell</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+
+      <div class="nav-right">LOGIN / SIGN UP</div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <!-- LEFT TEXT -->
+        <div>
+          <h1 class="hero-heading">Sustainable fashion for everyone</h1>
+          <p class="hero-text">
+            Buy, sell, and swap clothing effortlessly while reducing waste and supporting a circular fashion economy.
+          </p>
+
+          <div class="cta-row">
+            <a href="marketplace.html" class="cta-btn">Shop now</a>
+            <a href="sell.html" class="cta-btn cta-secondary">Sell an item</a>
+          </div>
+        </div>
+
+        <!-- RIGHT HERO IMAGE -->
+        <div class="hero-image-wrap">
+          <!-- Replace this with your real hero image -->
+          <img src="hero.png" alt="Hanging clothes" style="width:100%; height:auto; display:block;">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features">
+      <div class="container">
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3 class="feature-title">Swap Easily</h3>
+            <p class="feature-text">Trade clothes with community members using swap credits.</p>
+          </div>
+          <div class="feature-card">
+            <h3 class="feature-title">Sell Safely</h3>
+            <p class="feature-text">List your items securely with verified users.</p>
+          </div>
+          <div class="feature-card">
+            <h3 class="feature-title">Act Sustainably</h3>
+            <p class="feature-text">Reduce waste and give fashion a second life.</p>
+          </div>
         </div>
       </div>
-    </header>
+    </section>
+  </main>
 
-    <!-- MAIN CONTENT -->
-    <main>
-      <!-- HERO -->
-      <section class="hero">
-        <div class="container hero-grid">
-          <div>
-            <h1 class="hero-heading">Join the Circular<br>Fashion Movement</h1>
-
-            <p class="hero-body">
-              Give your clothes a second life — and find your next favourite piece! Rewear is a smart swapping
-              platform where you can list your pre-loved fashion items, earn credits, and exchange them for
-              styles you love. Join a growing community that values sustainability, creativity, and conscious
-              fashion choices.
-            </p>
-
-            <button class="btn-primary">
-              Shop now
-            </button>
-
-            <div class="hero-info-row">
-              <span class="hero-info-pill">Reduce Waste</span>
-              <span class="hero-info-pill">Affordable Style</span>
-              <span class="hero-info-pill">Community-Driven</span>
-            </div>
-          </div>
-
-         <div class="hero-image-wrap">
-  <img src="hero-rail.png"
-       alt="Hanging clothes in a minimalist wardrobe"
-       style="width:100%; height:auto; display:block;">
-</div>
-        </div>
-      </section>
-
-      <!-- WHY REWEAR -->
-      <section class="why-section">
-        <div class="container why-grid">
-          <div>
-            <h2 class="why-title">Why Rewear?</h2>
-            <p class="why-text">
-              Rewear makes sustainable fashion simple. By swapping instead of buying new, you reduce waste,
-              save money, and keep quality pieces in circulation for longer.
-            </p>
-          </div>
-
-          <div class="why-cards">
-            <article class="why-card">
-              <div class="why-card-image"></div>
-              <div class="why-card-body">Reduce&nbsp;Waste</div>
-            </article>
-            <article class="why-card">
-              <div class="why-card-image"></div>
-              <div class="why-card-body">Affordable&nbsp;Style</div>
-            </article>
-            <article class="why-card">
-              <div class="why-card-image"></div>
-              <div class="why-card-body">Sustainable&nbsp;Choices</div>
-            </article>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="container footer-inner">
-        <div>© <span id="year"></span> Rewear – Circular Fashion Platform</div>
-        <div class="footer-links">
-          <a href="about.html">About Us</a>
-          <a href="contact.html">Contact Us</a>
-        </div>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Rewear – Circular Fashion Platform</div>
+      <div class="footer-links">
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
       </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</div>
 </body>
 </html>
